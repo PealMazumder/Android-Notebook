@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.peal.androidnotebook"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.peal.androidnotebook"
