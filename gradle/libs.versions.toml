@@ -4,16 +4,26 @@ kotlin = "1.9.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
+junitCoreVersion = "1.5.0"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 gsonVersion = "2.11.0"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.10.0"
+constraintlayout = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
+androidx-junit-core = { group = "androidx.test", name = "core", version.ref = "junitCoreVersion" }
+androidx-junit-core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "junitCoreVersion" }
+androidx-junit-rules = { group = "androidx.test", name = "rules", version.ref = "junitCoreVersion" }
+androidx-junit-runner = { group = "androidx.test", name = "runner", version.ref = "junitCoreVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -27,6 +37,10 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

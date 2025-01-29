@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 
 /**
  * Created by Peal Mazumder on 23/1/25.
@@ -75,13 +77,25 @@ class DialogBuilder {
     fun setMessageTextStyle(style: TextStyle) = apply { this.messageTextStyle = style }
 
     @Composable
-    fun BuildDialog(showDialog: Boolean, onDismissRequest: () -> Unit) {
+    fun BuildDialog(
+        showDialog: Boolean,
+        onDismissRequest: () -> Unit,
+        dismissOnClickOutside: Boolean = true,
+        dismissOnBackPress: Boolean = true
+    ) {
         if (showDialog) {
-            Dialog(onDismissRequest = { onDismissRequest() }) {
+            Dialog(
+                onDismissRequest = { onDismissRequest() },
+                properties = DialogProperties(
+                    dismissOnClickOutside = dismissOnClickOutside,
+                    dismissOnBackPress = dismissOnBackPress
+                )
+            ) {
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(16.dp)
+                        .testTag("dialog_container"),
                     shape = RoundedCornerShape(16.dp),
                     elevation = CardDefaults.cardElevation(8.dp),
                 ) {
@@ -109,9 +123,9 @@ class DialogBuilder {
                                 contentDescription = null,
                                 modifier = Modifier
                                     .align(Alignment.CenterHorizontally)
-                                    .then(if (imageWidth != null) Modifier.width(imageWidth!!) else Modifier.wrapContentWidth())
-                                    .then(if (imageHeight != null) Modifier.height(imageHeight!!) else Modifier.wrapContentHeight())
+                                    .applyImageSize(imageWidth, imageHeight)
                                     .padding(bottom = 8.dp)
+                                    .testTag("dialog_image")
                             )
                         }
 
@@ -198,6 +212,17 @@ fun GradientButton(
         )
     }
 }
+
+fun Modifier.applyImageSize(width: Dp?, height: Dp?): Modifier {
+    return this
+        .then(
+            if (width != null) Modifier.width(width) else Modifier.wrapContentWidth()
+        )
+        .then(
+            if (height != null) Modifier.height(height) else Modifier.wrapContentHeight()
+        )
+}
+
 
 
 
